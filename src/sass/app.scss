@@ -1,0 +1,275 @@
+@import '_normalize.scss';
+
+body {
+    background: #ecdeb9;
+    font-family: 'Patrick Hand', cursive;
+    margin: 1vw;
+    text-transform: uppercase;
+}
+.center {
+    text-align: center;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+h1, .h1 {
+    font-family: 'Smokum', cursive;
+    font-size: 2vw;
+    color: white;
+    letter-spacing: .5ch;
+}
+.prow {
+    padding-bottom: 1ch;
+}
+.prow, .stern {
+    background-color: #ba6325;
+    width: 100%;
+}
+.app {
+    align-items: center; 
+    background-color: #eb9542;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    min-height: 50vh;
+    width: clamp(500px, 25%, 90vw);
+    margin: 0 auto;
+}
+.result {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+.ranks {
+    background-color: #e9d591;
+    list-style: none;
+    padding: 2ch;
+    margin: 0;
+}
+.rank {
+    align-content: center;
+    display: flex;
+    font-size: clamp(16px, 4ch, 25vw);
+    justify-content: space-between;
+    line-height: 1;
+    text-transform: uppercase;
+    & + & {
+        padding: 2ch 0 0;
+    }
+    &::before, &::after {
+        content: '•';
+        color: gray;
+        font-size: 6ch;
+        line-height: .2;
+        display: inline-block;
+        animation-name: light;
+    }
+}
+.red-hot,
+[data-result='red-hot'] .result {
+    -webkit-text-stroke: 1px black;
+    color: red;
+}
+.casanova,
+[data-result='casanova'] .result {
+    -webkit-text-stroke: 1px black;
+    color: orange;
+}
+.passionate,
+[data-result='passionate'] .result {
+    -webkit-text-stroke: 1px black;
+    color: purple;
+}
+.wild,
+[data-result='wild'] .result {
+    -webkit-text-stroke: 1px black;
+    color: yellow;
+}
+.kissable,
+[data-result='kissable'] .result {
+    -webkit-text-stroke: 1px black;
+    color: pink;
+}
+.mild,
+[data-result='mild'] .result {
+    -webkit-text-stroke: 1px black;
+    color: green;
+}
+.cold-fish,
+[data-result='cold-fish'] .result {
+    -webkit-text-stroke: 1px black;
+    color: turquoise;
+}
+/* ANIMATIONS */
+[data-result='no-result']{
+    .rank::before,
+    .rank::after {
+        animation: light 1s step-start infinite;
+        animation-duration: 13.5s;
+    }
+    .red-hot::before,
+    .red-hot::after {
+        animation-delay: 7.5s;
+    }
+    .casanova::before,
+    .casanova::after {
+        animation-delay: 6.5s;
+    }
+    .passionate::before,
+    .passionate::after {
+        animation-delay: 5.5s;
+    }
+    .wild::before,
+    .wild::after {
+        animation-delay: 4.5s;
+    }
+    .kissable::before,
+    .kissable::after {
+        animation-delay: 3.5s;
+    }
+    .mild::before,
+    .mild::after {
+        animation-delay: 2.5s;
+    }
+    .cold-fish::before,
+    .cold-fish::after {
+        animation-delay: 1.5s;
+    }
+}
+@keyframes light {
+    0% { color: gray; }
+    50% { color: white; }
+    100% { color: gray; }
+}
+
+button {
+    cursor: pointer;
+}
+
+.intro {
+    display: grid;
+    grid-template-columns: 42% 16% 42%;
+    grid-template-areas: 
+    ". test ."
+        "your heart love";
+    padding: 1ch;
+}
+.test {
+    grid-area: test;
+}
+.your {
+    grid-area: your;
+}
+.heart {
+    font-size: 8ch;
+    grid-area: heart;
+    line-height: .8;
+}
+.love {
+    grid-area: love;
+}
+
+[data-result='red-hot']{
+    .rank.red-hot {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: red;
+        }
+    }
+}
+[data-result='casanova']{
+    .rank.casanova {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: orange;
+        }
+    }
+}
+[data-result='passionate']{
+    .rank.passionate {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: purple;
+        }
+    }
+}
+[data-result='wild']{
+    .rank.wild {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: yellow;
+        }
+    }
+}
+[data-result='kissable']{
+    .rank.kissable {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: pink;
+        }
+    }
+}
+[data-result='mild']{
+    .rank.mild {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: green;
+        }
+    }
+}
+[data-result='cold-fish']{
+    .rank.fish {
+        animation: pulse 1s ease-out infinite;
+        &::before, 
+        &::after {
+            color: turquoise;
+        }
+    }
+}
+@keyframes pulse {
+    0% {
+        transform: scale(100%);
+    }
+    50% {
+        transform: scale(110%);
+    }
+    100% {
+        transform: scale(100%);
+    }
+}
+
+@mixin ucs {
+    text-transform: uppercase;
+    letter-spacing: .5ch;
+}
+
+button {
+    @include ucs;
+    padding: 1ch 2ch;
+    &:first-child {
+        margin-top: 2ch;
+    }
+}
+[type='text']{
+    @include ucs;
+    line-height: 40px;
+    padding: 0 1ch;
+}
+
+.form-or-result {
+    min-height: 8ch;
+}
+
+.hold-form-fields {
+    display: flex;
+    justify-content: space-evenly;
+}
